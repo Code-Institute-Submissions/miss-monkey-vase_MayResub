@@ -36,3 +36,23 @@ nav {
     
 }
 
+#page-container {
+    position: relative;
+    min-height: 100vh;
+    
+}
+
+#content-wrapper {
+    padding-bottom: 10rem;
+}
+
+footer {
+    background-color:#F2C9C9;
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    height: 10rem;
+    padding-bottom: 0;
+    margin-bottom: 0;
+}
+
