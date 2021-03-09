@@ -2,7 +2,7 @@
 {% load static %}
 
 {% block page_header %}
-    <div class="container header-container">
+    <div class="container header-container mt-3 mb-5 text-center">
         <div class="row">
             <h2>Products</h2>
         </div>
@@ -10,16 +10,26 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container-fluid">
-        <div class="row row-cols-1 row-cols-sm-2 row-cols-md-4">
-            <div class="col">
-                <div class="product-container">
-                    <p class="product-name"></p>
-                    <img src="" alt="">
-                    <p class="price"></p>
+        <div class="container-fluid mx-5r">
+            <div class="row row-cols-1 row-cols-sm-3 row-cols-md-4 g-4">
+                {% for product in products %}
+                <div class="col text-center">
+                    <div class="card h-100">
+                        <a href="#">
+                            <img src="{{product.image.url}}" class="card-img-top" alt="{{ product.name }}">
+                        </a>
+                        <div class="card-body">
+                            <h7 class="card-title">{{ product.name }}</h7>
+                            
+                        </div>
+                        <div class="card-footer">
+                            <p class="d-inline text-start me-3"><small><i class="fas fa-star"></i>{{ product.rating }}</small></p>
+                            <p class="d-inline text-end">${{ product.price }}</p>
+                            <a href="#" class="btn btn-outline-dark d-block align-self-end">Add To Bag</a>
+                        </div>
+                    </div>
                 </div>
+                {% endfor %}
             </div>
         </div>
-    </div>
-    
 {% endblock %}
