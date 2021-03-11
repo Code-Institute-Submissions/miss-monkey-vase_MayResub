@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, reverse
+from django.core.paginator import Paginator
 from django.contrib import messages
 from django.db.models import Q
 from django.db.models.functions import Lower
@@ -46,7 +47,9 @@ def products(request):
             products = products.filter(queries)
 
     current_sorting = f'{sort}_{direction}'
-
+    paginator = Paginator(products, 4)
+    page_number = request.GET.get('page', 1)
+    products = paginator.get_page(page_number)
     context = {
         'products': products,
         'search_term': query,
