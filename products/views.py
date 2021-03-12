@@ -7,7 +7,7 @@ from django.db.models.functions import Lower
 from .models import Product, Category
 
 
-def products(request):
+def all_products(request):
     """ A view to return the products page """
 
     products = Product.objects.all()
@@ -47,14 +47,18 @@ def products(request):
             products = products.filter(queries)
 
     current_sorting = f'{sort}_{direction}'
-    paginator = Paginator(products, 4)
-    page_number = request.GET.get('page', 1)
+
+    paginator = Paginator(products, 8)
+    page_number = request.GET.get('page')
     products = paginator.get_page(page_number)
+    total_products = Product.objects.all()
+
     context = {
         'products': products,
         'search_term': query,
         'current_categories': categories,
         'current_sorting': current_sorting,
+        'total_products': total_products,
     }
 
     return render(request, 'products/products.html', context)

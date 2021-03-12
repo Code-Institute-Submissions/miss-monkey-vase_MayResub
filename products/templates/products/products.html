@@ -32,7 +32,7 @@
                     </div>
                     <div class="col-12 col-md-6">
                         <p class="text-muted mt-3 text-center text-md-end">
-                            {{ products|length }} Products{% if search_term %} found for <strong>{{ search_term }}</strong>{% endif %}
+                            {{ total_products|length }} Products{% if search_term %} found for <strong>{{ search_term }}</strong>{% endif %}
                         </p>
                     </div>
                 </div>
@@ -59,29 +59,29 @@
                 </div>
                 {% endfor %}
             </div>
-            <nav aria-label="Page navigation example">
+            <nav aria-label="...">
                 <ul class="pagination justify-content-center my-5">
                     {% if products.has_previous %}
                     <li class="page-item">
-                        <a class="page-link" href="?page={{products.previous_page_number}}" tabindex="-1" aria-label="Previous">
+                        <a class="page-link" href="{% url 'products' %}?page={{products.previous_page_number}}" tabindex="-1" aria-label="Previous">
                             <span aria-hidden="true">&laquo;</span>
                         </a>
                     </li>
                     {% endif %}
                     {% for i in products.paginator.page_range %}
-                        {% if product.number == i %}
-                            <li class="page-item">
-                                <a class="page-link" href="#">{{i}}</a>
+                        {% if products.number == i %}
+                            <li class="page-item active" aria-current="page">
+                                <a class="page-link" href="{% url 'products' %}">{{i}}</a>
                             </li>
                         {% else %}
                             <li class="page-item">
-                                <a class="page-link" href="?page={{i}}">{{i}}</a>
+                                <a class="page-link" href="{% url 'products' %}?page={{i}}">{{i}}</a>
                             </li>
                         {% endif %}
                     {% endfor %}
                     {% if products.has_next %}
                     <li class="page-item">
-                        <a class="page-link" href="?page={{products.next_page_number}}" tabindex="-1" aria-label="Next">
+                        <a class="page-link" href="{% url 'products' %}?page={{products.next_page_number}}" tabindex="-1" aria-label="Next">
                             <span aria-hidden="true">&raquo;</span>
                         </a>
                     </li>
@@ -111,6 +111,8 @@
                 window.location.replace(currentUrl);
             }
         });
+
+
 
     </script>
 
