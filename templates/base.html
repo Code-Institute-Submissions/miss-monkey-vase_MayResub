@@ -80,23 +80,33 @@
                                 </li>
                             </ul>
                             <!-- Products Menu-->
-                            <ul class="navbar-nav me-auto justify-content-center mb-lg-0">
-                                <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#">Candles</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#">Home Fragrance</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="#">Essential Oils</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="{% url 'products' %}?sort=date_added&direction=desc">New In</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link active" aria-current="page" href="{% url 'products' %}">All Products</a>
-                                </li>
-                            </ul>
+                            <div class="row">
+                                <div class="col-10">
+                                    <ul class="navbar-nav me-auto justify-content-center mb-lg-0">
+                                        <li class="nav-item">
+                                            <a class="nav-link active" aria-current="page" href="{% url 'products' %}?category=candles">Candles</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link active" aria-current="page" href="{% url 'products' %}?category=home_fragrance">Home Fragrance</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link active" aria-current="page" href="{% url 'products' %}?category=essential_oils">Essential Oils</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{% url 'products' %}?sort=date_added&direction=desc">New In</a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a class="nav-link active" aria-current="page" href="{% url 'products' %}">All Products</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="col-2">
+                                    <form class="d-flex justify-content-end">
+                                        <input class="form-control-sm me-2" type="search" placeholder="Search" aria-label="Search">
+                                        <button class="btn btn-sm btn-outline-success" type="submit">Search</button>
+                                    </form>
+                                </div>
+                            </div>  
                         </div>
                     </div>
                 </div>

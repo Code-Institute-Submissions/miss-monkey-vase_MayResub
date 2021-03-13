@@ -11,6 +11,7 @@ def all_products(request):
     """ A view to return the products page """
 
     products = Product.objects.all()
+    x = Product.objects.all()
     query = None
     categories = None
     sort = None
@@ -51,14 +52,13 @@ def all_products(request):
     paginator = Paginator(products, 8)
     page_number = request.GET.get('page')
     products = paginator.get_page(page_number)
-    total_products = Product.objects.all()
 
     context = {
         'products': products,
         'search_term': query,
         'current_categories': categories,
         'current_sorting': current_sorting,
-        'total_products': total_products,
+        'x': x,
     }
 
     return render(request, 'products/products.html', context)
