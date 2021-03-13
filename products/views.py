@@ -11,7 +11,6 @@ def all_products(request):
     """ A view to return the products page """
 
     products = Product.objects.all()
-    x = Product.objects.all()
     query = None
     categories = None
     sort = None
@@ -58,7 +57,6 @@ def all_products(request):
         'search_term': query,
         'current_categories': categories,
         'current_sorting': current_sorting,
-        'x': x,
     }
 
     return render(request, 'products/products.html', context)
