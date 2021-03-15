@@ -35,9 +35,15 @@
                 <div class="col text-center">
                     <div class="card h-100">
                         <div class="overflow-hidden">
-                            <a href="#">
-                                <img src="{{product.image.url}}" class="card-img-top" alt="{{ product.name }}">
-                            </a>
+                            {% if product.image %}
+                                <a href="{% url 'product_detail' product.id %}">
+                                    <img class="detail-img img-fluid card-image-top" src="{{ product.image.url }}" alt="{{ product.name }}">
+                                </a>
+                            {% else %}
+                                <a href="{% url 'product_detail' product.id %}">
+                                    <img class="detail-img img-fluid card-img-top" src="{{ MEDIA_URL }}no-image.png" alt="{{ product.name }}">
+                                </a>
+                            {% endif %}
                         </div>
                         
                         <div class="card-body">
@@ -46,7 +52,9 @@
                         </div>
                         <div class="card-footer">
                             <div class="d-flex">
+                            {% if product.rating %}
                                 <p class="p-2 text-muted"><small><i class="fas fa-star"></i>{{ product.rating }}</small></p>
+                            {% endif %}
                                 <p class="p-2 ms-auto">${{ product.price }}</p>
                             </div>
                             <a href="#" class="btn btn-outline-dark align-self-end">Add To Bag</a>

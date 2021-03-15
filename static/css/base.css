@@ -60,3 +60,8 @@ img.card-img-top {
     max-height: 250px;
     width: auto;
 }
+
+.detail-img {
+    max-width: 350px;
+    height: auto;
+}
