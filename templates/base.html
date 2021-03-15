@@ -51,14 +51,28 @@
         <header>
             <nav class="navbar navbar-expand-lg navbar-light bg-light">
                 <div class="container-fluid">
-                    <a class="navbar-brand" href="#">
-                        <img src="{{MEDIA_URL}}logo.png" alt="" width="100" height="100">
-                    </a>
                     <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                         data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                         <span class="navbar-toggler-icon"></span>
                     </button>
+                    <a class="navbar-brand d-none d-md-none d-lg-block d-xxl-block" href="#">
+                        <img src="{{MEDIA_URL}}logo.png" alt="Vase" width="100" height="100">
+                    </a>
+                    <div class="d-lg-none">
+                        <form method="GET" action="{% url 'products' %}" class="d-flex justify-content-end">
+                            <input class="form-control-sm" type="text" name="q" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-sm btn-outline-success form-control" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                        </form>
+                    </div>
+                    
+                    <div class="d-lg-none">
+                        <a href="#">
+                            <i class="fas fa-shopping-bag"></i>
+                        </a>
+                    </div>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <div class="container-fluid">
                             <!-- Main Menu -->
@@ -78,37 +92,45 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="#">Log Out</a>
                                 </li>
+                                <li class="nav-item ms-5">
+                                    <a href="#" class="">
+                                        <div class="text-center">
+                                            <div><i class="fas fa-shopping-bag fa-lg"></i></div>
+                                        </div>
+                                        
+                                    </a>
+                                </li>
                             </ul>
                             <!-- Products Menu-->
-                            <div class="row">
-                                <div class="col-10">
-                                    <ul class="navbar-nav me-auto justify-content-center mb-lg-0">
-                                        <li class="nav-item">
-                                            <a class="nav-link active" aria-current="page" href="{% url 'products' %}?category=candles">Candles</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link active" aria-current="page" href="{% url 'products' %}?category=home_fragrance">Home Fragrance</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link active" aria-current="page" href="{% url 'products' %}?category=essential_oils">Essential Oils</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link" href="{% url 'products' %}?sort=date_added&direction=desc">New In</a>
-                                        </li>
-                                        <li class="nav-item">
-                                            <a class="nav-link active" aria-current="page" href="{% url 'products' %}">All Products</a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="col-2">
+                            <ul class="navbar-nav justify-content-end mb-lg-0">
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="{% url 'products' %}?category=candles">Candles</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="{% url 'products' %}?category=home_fragrance">Home
+                                        Fragrance</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="{% url 'products' %}?category=essential_oils">Essential
+                                        Oils</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{% url 'products' %}?sort=date_added&direction=desc">New
+                                        In</a>
+                                </li>
+                                <li class="nav-item">
+                                    <a class="nav-link active" aria-current="page" href="{% url 'products' %}">All
+                                        Products</a>
+                                </li>
+                                <li class="nav-item d-none d-lg-inline ms-5">
                                     <form method="GET" action="{% url 'products' %}" class="d-flex justify-content-end">
                                         <input class="form-control-sm" type="text" name="q" placeholder="Search" aria-label="Search">
                                         <button class="btn btn-sm btn-outline-success form-control" type="submit">
                                             <i class="fas fa-search"></i>
                                         </button>
                                     </form>
-                                </div>
-                            </div>  
+                                </li>
+                            </ul>
                         </div>
                     </div>
                 </div>
