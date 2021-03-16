@@ -10,7 +10,44 @@
 {% endblock %}
 
 {% block content %}
-    
+    <h3>Shopping Bag</h3>
+    {% if bag_items %}
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col">
+                    {% for item in bag_items %}
+                        <div class="row">
+                            <div class="col">
+                                {{ item.product.image }}
+                            </div>
+                            <div class="col">
+                                <p>Price</p>
+                                <p>{{item.product.price }}</p>
+                            </div>
+                            <div class="col">
+                                <p>Quantity</p>
+                                <p>{{ item.product.quantity }}</p>
+                            </div>
+                            <div class="col">
+                                <p>Subtotal</p>
+                                <p>{{ item.product.subtotal }}</p>
+                            </div>
+                            <div class="col">
+                                <i class="fas fa-times"></i>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <p>Your bag is empty</p>
+        <a href="{% url 'products' %}" class="btn btn-outline-black">
+            <span class="icon">
+                <i class="fas fa-chevron-left"></i>
+            </span>
+        </a>
+    {% endif %}
 
     
 {% endblock %}
