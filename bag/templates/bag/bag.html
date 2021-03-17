@@ -10,36 +10,44 @@
 {% endblock %}
 
 {% block content %}
-    <h3>Shopping Bag</h3>
+    <h3 class="text-center my-3">Shopping Bag</h3>
     {% if bag_items %}
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col">
-                    {% for item in bag_items %}
-                        <div class="row">
-                            <div class="col">
-                                {{ item.product.image }}
-                            </div>
-                            <div class="col">
-                                <p>Price</p>
-                                <p>{{item.product.price }}</p>
-                            </div>
-                            <div class="col">
-                                <p>Quantity</p>
-                                <p>{{ item.product.quantity }}</p>
-                            </div>
-                            <div class="col">
-                                <p>Subtotal</p>
-                                <p>{{ item.product.subtotal }}</p>
-                            </div>
-                            <div class="col">
-                                <i class="fas fa-times"></i>
-                            </div>
-                        </div>
-                    {% endfor %}
-                </div>
-            </div>
-        </div>
+    <div class="container px-3">
+    <table class="table table-sm px-4">
+    <div class="table-responsive">
+        <table class="table align-middle text-center">
+            <thead class="table-danger">
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Product Info</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Subtotal</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+
+                {% for item in bag_items %}
+                <tr>
+                    <td class="bag-image text-center"><img src="{{ item.product.image.url }}" height="150" width="auto" alt="{{ item.product.name }}"></td>
+                    <td class="text-start"><small>{{ item.product.name }}</small></td>
+                    <td> ${{ item.product.price }}</td>
+                    <td>
+                        <input class="form-control qty_input text-center" type="number" name="quantity"
+                            value="1" min="1" max="99" data-item_id="{{ product.id }}"> 
+                    </td>
+                    <td>subtotal</td>
+                    <td><i class="fas fa-times"></i></td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</table>
+                    
+</div>
+                   
     {% else %}
         <p>Your bag is empty</p>
             <a href="{% url 'products' %}" class="btn btn-outline-dark">
