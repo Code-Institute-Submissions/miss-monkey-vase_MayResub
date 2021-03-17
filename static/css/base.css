@@ -75,3 +75,20 @@ img.card-img-top {
     width: 1.5rem;
 }
 
+.qty_input {
+width: 120px;
+}
+
+
+/* w3schools.com css to remove arrows from quantity input */
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
