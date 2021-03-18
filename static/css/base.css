@@ -76,7 +76,7 @@ img.card-img-top {
 }
 
 .qty_input {
-width: 120px;
+width: 200px;
 }
 
 
@@ -91,4 +91,9 @@ input::-webkit-inner-spin-button {
 /* Firefox */
 input[type=number] {
   -moz-appearance: textfield;
+}
+
+.update-link,
+.remove-item {
+    cursor: pointer;
 }

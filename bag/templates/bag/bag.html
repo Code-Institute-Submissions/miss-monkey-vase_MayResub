@@ -17,16 +17,18 @@
     <div class="container px-1 d-block d-lg-none">
         {% for item in bag_items %}
         <div class="row">
-            <div class="col"><img src="{{ item.product.image.url }}" height="150" width="auto" alt="{{ item.product.name }}"></div>
+            {% if item.product.image %}
+                <div class="col"><img src="{{ item.product.image.url }}" height="150" width="auto" alt="{{ item.product.name }}"></div>
+            {% else %}
+                <div class="col"><img src="{{ MEDIA_URL }}no-image.png" height="150" width="auto" alt="{{ item.product.name }}"></div>
+            {% endif %}
             <div class="col">
                 <p><strong>{{ item.product.name }}</strong></p>
                 <p>${{ item.product.price }}</p>
-                <div class="input-group qty_input input-group-sm flex-nowrap">
-                    <button class="btn btn-outline-dark" type="button"><i class="fas fa-minus fa-sm"></i></button>
-                    <input class="form-control qty_input text-center" type="number" name="quantity" value="{{ item.quantity }}" min="1"
-                        max="99" data-item_id="{{ item.item_id }}">
-                    <button class="btn btn-outline-dark d-inline" type="button"><i class="fas fa-plus fa-sm"></i></button>
+                <div>
+                    {% include "bag/quantity-form.html" %}
                 </div>
+                
                 <p>Subtotal: ${{ item.product.price | calc_subtotal:item.quantity }}</p>
             </div>
         </div>
@@ -57,16 +59,18 @@
 
                 {% for item in bag_items %}
                 <tr>
-                    <td class="bag-image text-center"><img src="{{ item.product.image.url }}" height="150" width="auto" alt="{{ item.product.name }}"></td>
+                    <td class="bag-image text-center">
+                        {% if item.product.image %}
+                            <div class="col"><img src="{{ item.product.image.url }}" height="150" width="auto" alt="{{ item.product.name }}"></div>
+                        {% else %}
+                            <div class="col"><img src="{{ MEDIA_URL }}no-image.png" height="150" width="auto" alt="{{ item.product.name }}"></div>
+                        {% endif %}
+                    </td>
                     <td class="text-start"><small>{{ item.product.name }}</small></td>
                     <td> ${{ item.product.price }}</td>
                     <td>
-                        <div class="input-group qty_input input-group-sm flex-nowrap">
-                            <button class="btn btn-outline-dark" type="button"><i class="fas fa-minus fa-sm"></i></button>
-                            <input class="form-control qty_input text-center" type="number" name="quantity" value="{{ item.quantity }}" min="1" max="99"
-                                data-item_id="{{ item.item_id }}">
-                            <button class="btn btn-outline-dark d-inline" type="button"><i class="fas fa-plus fa-sm"></i></button>
-                        </div>
+                        {% include "bag/quantity-form.html" %}
+
                     </td>
                     <td>${{ item.product.price | calc_subtotal:item.quantity }}</td>
                     <td><i class="fas fa-times"></i></td>
@@ -76,8 +80,8 @@
         </table>
          <div class="float-end me-5">
             <p>Total: ${{ total|floatformat:2 }}</p>
-            <p>Delivery: </p>
-            <p>Grand Total:</p>
+            <p>Delivery: ${{ delivery|floatformat:2 }}</p>
+            <p>Grand Total: ${{ grand_total|floatformat:2 }}</p>
         </div>  
     </div>
 </table>
@@ -101,4 +105,33 @@
     {% endif %}
 
     
+{% endblock %}
+
+{% block postloadjs %}
+{{ block.super }}
+
+{% include 'products/includes/quantity_input_script.html' %}
+
+<script type="text/javascript">
+    // Update quantity on click
+     $('.update-link').click(function(e) {
+        var form = $(this).prev('.update-form');
+        form.submit();
+    })
+        
+
+
+    // Remove item and reload on click
+    $('.remove-item').click(function(e) {
+        var csrfToken = "{{ csrf_token }}";
+        var itemId = $(this).attr('id').split('remove_')[1];
+        var url = `/bag/remove/${itemId}/`;
+        
+
+        $.post(url, data)
+         .done(function() {
+             location.reload();
+         });
+    })
+</script>
 {% endblock %}
