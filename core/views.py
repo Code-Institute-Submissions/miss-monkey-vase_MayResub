@@ -28,10 +28,29 @@ def new(request):
                 Please complete the process by \
                 <a href="{}/confirm/?email={}&conf_num={}"> clicking here to \
                 confirm your registration</a>.'.format(request.build_absolute_uri('/confirm/'),
-                                                    sub.email,
-                                                    sub.conf_num))
+                                                            sub.email,
+                                                            sub.conf_num))
         sg = SendGridAPIClient(settings.SENDGRID_API_KEY)
         response = sg.send(message)
         return render(request, 'sendgrid.html', {'email': sub.email, 'action': 'added', 'form': SubscriberForm()})
     else:
         return render(request, 'sendgrid.html', {'form': SubscriberForm()})
+
+
+def confirm(request):
+    sub = Subscriber.objects.get(email=request.GET['email'])
+    if sub.conf_num == request.GET['conf_num']:
+        sub.confirmed = True
+        sub.save()
+        return render(request, 'sendgrid.html', {'email': sub.email, 'action': 'confirmed'})
+    else:
+        return render(request, 'sendgrid.html', {'email': sub.email, 'action': 'denied'})
+
+
+def delete(request):
+    sub = Subscriber.objects.get(email=request.GET['email'])
+    if sub.conf_num == request.GET['conf_num']:
+        sub.delete()
+        return render(request, 'sendgrid.html', {'email': sub.email, 'action': 'unsubscribed'})
+    else:
+        return render(request, 'sendgrid.html', {'email': sub.email, 'action': 'denied'})
