@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'home',
     'products',
     'bag',
+    'core',
 ]
 
 
@@ -160,3 +161,9 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 FREE_DELIVERY_THRESHOLD = 50
 STANDARD_DELIVERY_PERCENTAGE = 10
+
+
+# sendgrid
+
+FROM_EMAIL = 'vase.django@gmail.com'
+SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
