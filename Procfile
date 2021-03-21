@@ -1,0 +1,1 @@
+web: gunicorn vase-e-store.wsgi:application
