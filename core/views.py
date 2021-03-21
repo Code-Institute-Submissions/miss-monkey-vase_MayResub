@@ -7,6 +7,7 @@ from .forms import SubscriberForm
 import random
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
+import os
 
 # Helper Functions
 
@@ -33,12 +34,12 @@ def new(request):
         sg = SendGridAPIClient(settings.SENDGRID_API_KEY)
         response = sg.send(message)
         return render(
-                    request, 'sendgrid.html',
+                    request, 'core/sendgrid.html',
                     {'email': sub.email,
                      'action': 'added',
                      'form': SubscriberForm()})
     else:
-        return render(request, 'sendgrid.html', {'form': SubscriberForm()})
+        return render(request, 'core/sendgrid.html', {'form': SubscriberForm()})
 
 
 def confirm(request):
@@ -47,12 +48,12 @@ def confirm(request):
         sub.confirmed = True
         sub.save()
         return render(
-                    request, 'sendgrid.html',
+                    request, 'core/sendgrid.html',
                     {'email': sub.email,
                      'action': 'confirmed'})
     else:
         return render(
-                    request, 'sendgrid.html',
+                    request, 'core/sendgrid.html',
                     {'email': sub.email,
                      'action': 'denied'})
 
@@ -62,11 +63,11 @@ def delete(request):
     if sub.conf_num == request.GET['conf_num']:
         sub.delete()
         return render(
-                    request, 'sendgrid.html',
+                    request, 'core/sendgrid.html',
                     {'email': sub.email,
                      'action': 'unsubscribed'})
     else:
         return render(
-                    request, 'sendgrid.html',
+                    request, 'core/sendgrid.html',
                     {'email': sub.email,
                      'action': 'denied'})

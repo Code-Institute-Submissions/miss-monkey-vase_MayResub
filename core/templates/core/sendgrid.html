@@ -1,16 +1,15 @@
 {% extends "base.html" %}
-{% load static %}
 
 {% block content %}
     <div class="container">
-            <div class="col-12">
-                <h1>Email Newsletter</h1>
-            </div>
-            <div class="col-12">
-                {% if email %}
+        <div class="col-12">
+            <p>Join our mailing list</p>
+        </div>
+        <div class="col-12">
+            {% if email %}
                 <p>{{ email }} has been {{ action }}.</p>
-                {% endif %}
-            </div>
+            {% endif %}
+        </div>
         {% if form %}
             <div class="col-12 col-md-4">
                 <form method="post" novalidate>
@@ -21,5 +20,5 @@
                 </form>
             </div>
         {% endif %}
-        </div>
+    </div>
 {% endblock %}
