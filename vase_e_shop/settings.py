@@ -10,13 +10,12 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
 
-from pathlib import Path
 import os
 import dj_database_url
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -183,6 +182,7 @@ if 'USE_AWS' in os.environ:
         'Expires': 'Thu, 31 Dec 2099 20:00:00 GMT',
         'CacheControl': 'max-age=94608000',
     }
+
     # Bucket Config
     AWS_STORAGE_BUCKET_NAME = 'vase-e-store'
     AWS_S3_REGION_NAME = 'eu-west-2'
@@ -208,5 +208,5 @@ STRIPE_PUBLIC_KEY = os.environ.get('STRIPE_PUBLIC_KEY')
 STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY')
 
 # sendgrid
-FROM_EMAIL = 'vase.django@gmail.com'
-SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
+# FROM_EMAIL = 'vase.django@gmail.com'
+# SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
