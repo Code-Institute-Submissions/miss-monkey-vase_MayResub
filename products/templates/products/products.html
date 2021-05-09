@@ -53,11 +53,22 @@
                         <div class="card-footer">
                             <div class="d-flex">
                             {% if product.rating %}
-                                <p class="p-2 text-muted"><small><i class="fas fa-star"></i>{{ product.rating }}</small></p>
+                                <p class="px-2 text-muted"><small><i class="fas fa-star"></i>{{ product.rating }}</small></p>
                             {% endif %}
-                                <p class="p-2 ms-auto">${{ product.price }}</p>
+                                <p class="px-2 ms-auto">${{ product.price }}</p>
                             </div>
-                            <a href="#" class="btn btn-outline-dark">Add To Bag</a>
+                            <div class="my-0">
+                                <form class="form" action="{% url 'add_to_bag' product.id %}" method="POST">
+                                    {% csrf_token %}
+                                    <div class="form-row">
+                                        <div class="col-12">
+                                            <input type="submit" class="btn btn-dark rounded-0 text-uppercase mt-1" value="Add to Bag">
+                                        </div>
+                                        <input class="form-control qty_input text-center" type="hidden" name="quantity" value="1" data-item_id="{{ product.id }}" id="id_qty_{{ product.id }}">
+                                        <input type="hidden" name="redirect_url" value="{{ request.path }}">
+                                    </div>
+                                </form> 
+                            </div>     
                             <br>
                             {% if request.user.is_superuser %}
                                 <small class="mt-2">
