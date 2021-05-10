@@ -24,10 +24,6 @@ As a customer:
 ### Wireframes
 [All wireframes can be accessed here](/workspace/vase/documentation/wireframes.pdf)
 
-
-After deploying to heroku I get an error "The SECRET_KEY setting must not be empty."
-Which I'm not able to fix
-
 ## Credits
 
 - Used some of Code Institute Botique Ado project code.
