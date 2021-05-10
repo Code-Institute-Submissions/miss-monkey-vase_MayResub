@@ -29,6 +29,7 @@ urlpatterns = [
     path('bag/', include('bag.urls')),
     path('checkout/', include('checkout.urls')),
     path('profiles/', include('profiles.urls')),
+    path('sendgrid_newsletter/', include('sendgrid_newsletter.urls')),
     path(
         'favicon.ico',
         RedirectView.as_view(url=staticfiles_storage.url('favicon.png')),
