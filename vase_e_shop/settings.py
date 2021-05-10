@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'bag',
     'checkout',
     'profiles',
+    'sendgrid_newsletter',
 
     # other
     'crispy_forms',
@@ -219,5 +220,5 @@ else:
     DEFAULT_FROM_EMAIL = os.environ.get('EMAIL_HOST_USER')
 
 # sendgrid
-# FROM_EMAIL = 'vase.django@gmail.com'
-# SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
+FROM_EMAIL = 'vase.django@gmail.com'
+SENDGRID_API_KEY = os.environ.get('SENDGRID_API_KEY')
