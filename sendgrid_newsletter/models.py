@@ -17,13 +17,13 @@ class Newsletter(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     subject = models.CharField(max_length=150)
-    contents = models.FileField(upload_to='media/')
+    contents = models.FileField(upload_to='uploaded_newsletters/')
 
     def __str__(self):
         return self.subject + " " + self.created_at.strftime("%B %d, %Y")
 
     def send(self, request):
-        contents = self.contents.read().decode('latin-1')
+        contents = self.contents.read().decode('utf-8')
         subscribers = Subscriber.objects.filter(confirmed=True)
         sg = SendGridAPIClient(settings.SENDGRID_API_KEY)
         for sub in subscribers:
