@@ -73,7 +73,7 @@
 
                     </td>
                     <td>${{ item.product.price | calc_subtotal:item.quantity }}</td>
-                    <td><i class="fas fa-times"></i></td>
+                    <td><a class="remove-item text-danger float-right" id="remove_{{ item.item_id }}"><i class="fas fa-times"></i></a></td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -82,7 +82,7 @@
             <p>Total: ${{ total|floatformat:2 }}</p>
             <p>Delivery: ${{ delivery|floatformat:2 }}</p>
             <p>Grand Total: ${{ grand_total|floatformat:2 }}</p>
-            <a href="{% url 'checkout' %}">Checkout</a>
+            <a href="{% url 'checkout' %}" class="btn btn-dark float-end">Checkout</a>
         </div> 
         <div>
             

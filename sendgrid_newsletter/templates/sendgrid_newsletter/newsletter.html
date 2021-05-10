@@ -3,11 +3,11 @@
 {% block content %}
     <div class="container">
         <div class="col-12">
-            <p>Join our mailing list</p>
+            <h3>Join our mailing list</h3>
         </div>
         <div class="col-12">
             {% if email %}
-                <p>{{ email }} has been {{ action }}.</p>
+                <p><strong>{{ email }}</strong> has been {{ action }}.</p>
             {% endif %}
         </div>
         {% if form %}
@@ -16,7 +16,7 @@
                     {% csrf_token %}
                     {{ form }}
                     <br>
-                    <button type="submit" class="btn btn-success">Subscribe!</button>
+                    <button type="submit" class="btn btn-dark">Subscribe!</button>
                 </form>
             </div>
         {% endif %}

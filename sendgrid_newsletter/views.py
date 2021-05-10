@@ -7,11 +7,9 @@ from sendgrid_newsletter.forms import SubscriberForm
 import random
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
-import os
+
 
 # Helper Functions
-
-
 def random_digits():
     return "%0.12d" % random.randint(0, 999999999999)
 
@@ -40,6 +38,7 @@ def new(request):
                      'form': SubscriberForm()})
     else:
         return render(request, 'sendgrid_newsletter/newsletter.html', {'form': SubscriberForm()})
+
 
 def confirm(request):
     sub = Subscriber.objects.get(email=request.GET['email'])

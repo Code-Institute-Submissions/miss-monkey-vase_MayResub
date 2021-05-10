@@ -60,15 +60,18 @@
                     <div class="d-lg-none">
                         <form method="GET" action="{% url 'products' %}" class="d-flex justify-content-end">
                             <input class="form-control-sm" type="text" name="q" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-sm btn-outline-success form-control" type="submit">
+                            <button class="btn btn-sm btn-outline-dark form-control" type="submit">
                                 <i class="fas fa-search"></i>
                             </button>
                         </form>
                     </div>
                     
                     <div class="d-lg-none">
-                        <a href="#">
-                            <i class="fas fa-shopping-bag"></i>
+                        <a href="{% url 'view_bag' %}" class="text-dark">
+                            <div class="text-center">
+                                <div><i class="fas fa-shopping-bag fa-lg"></i></div>
+                            </div>
+                            
                         </a>
                     </div>
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -91,7 +94,7 @@
                                     <a class="nav-link" href="{% url 'account_logout' %}">Log Out</a>
                                 </li>
                                 <li class="nav-item ms-5">
-                                    <a href="{% url 'view_bag' %}" class="">
+                                    <a href="{% url 'view_bag' %}" class="text-dark">
                                         <div class="text-center">
                                             <div><i class="fas fa-shopping-bag fa-lg"></i></div>
                                         </div>
@@ -123,7 +126,7 @@
                                 <li class="nav-item d-none d-lg-inline ms-5">
                                     <form method="GET" action="{% url 'products' %}" class="d-flex justify-content-end">
                                         <input class="form-control-sm" type="text" name="q" placeholder="Search" aria-label="Search">
-                                        <button class="btn btn-sm btn-outline-success form-control" type="submit">
+                                        <button class="btn btn-sm btn-outline-dark form-control" type="submit">
                                             <i class="fas fa-search"></i>
                                         </button>
                                     </form>
@@ -167,7 +170,7 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col text-center">
-                     <a href="{% url 'new' %}">Join Our Mailing List</a>
+                     <a href="{% url 'new' %}" class="btn btn-dark mt-3">Join Our Mailing List</a>
                     </div>
                 </div>
                 <div class="row text-dark">
